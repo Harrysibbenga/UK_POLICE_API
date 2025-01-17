@@ -1,5 +1,3 @@
-README: UK Police Crime Data API
-
 ## Task Description
 
 The goal of this project is to create an API that fetches and summarizes stop-and-search outcome data from the UK Police API for a specific police force and date. The resulting API endpoint provides a summary of the outcomes and their respective counts, along with a total count of all outcomes.
