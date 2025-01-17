@@ -32,3 +32,11 @@ def test_valid_request(mocker, client):
     assert response.json["total"] == 8
     assert response.json["breakdown"]["Arrest"] == 5
     assert response.json["breakdown"]["A no further action disposal"] == 3
+    
+def test_rate_limit(client):
+    for _ in range(5):
+        response = client.get("/stop-and-search/outcome?force=metropolitan&date=2022-08")
+        assert response.status_code != 429
+
+    response = client.get("/stop-and-search/outcome?force=metropolitan&date=2022-08")
+    assert response.status_code == 429
