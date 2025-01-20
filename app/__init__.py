@@ -3,6 +3,16 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
 def create_app():
+    """
+        Create and configure the Flask application.
+        
+        This function initializes the Flask application, loads the configuration,
+        initializes extensions, and registers blueprints.
+        
+        Returns:
+            Flask: The configured Flask application instance.
+    """
+    
     app = Flask(__name__)
     
     # Load configuration
@@ -21,3 +31,4 @@ def create_app():
     app.register_blueprint(routes_bp)
     
     return app
+
