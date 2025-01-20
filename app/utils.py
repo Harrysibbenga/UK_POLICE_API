@@ -10,6 +10,7 @@ def validate_date(date_str):
         Returns:
             bool: True if the date string is valid and matches the format YYYY-MM, False otherwise.
     """
+    
     try:
         datetime.strptime(date_str, "%Y-%m")
         return True

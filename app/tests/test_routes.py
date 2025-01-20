@@ -14,6 +14,7 @@ def client():
         Yields:
             FlaskClient: A test client for the Flask application.
     """
+    
     app = create_app()
     app.testing = True
     with app.test_client() as client:
@@ -89,6 +90,17 @@ def test_valid_request(mocker, client):
     assert response.json["breakdown"]["A no further action disposal"] == 3
     
 def test_rate_limit(client):
+    """
+        Test the rate limiting functionality of the '/stop-and-search/outcome' endpoint.
+        
+        This test sends multiple GET requests to the endpoint to ensure that the rate limit is enforced.
+        It first sends 5 requests and asserts that the status code is not 429 (Too Many Requests).
+        Then, it sends one more request and asserts that the status code is 429, indicating that the rate limit has been reached.
+        
+        Args:
+            client: The test client used to make requests to the application.
+    """
+    
     for _ in range(5):
         response = client.get("/stop-and-search/outcome?force=metropolitan&date=2022-08")
         assert response.status_code != 429
